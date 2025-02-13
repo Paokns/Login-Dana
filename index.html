@@ -12,13 +12,13 @@
 
         // Konfigurasi Firebase
         const firebaseConfig = {
-          apiKey: "AIzaSyADiJ85Yr0cnM3AlN4E23DeLhjjtzS-utg",
-          authDomain: "testing-f7e72.firebaseapp.com",
-          databaseURL: "https://testing-f7e72-default-rtdb.firebaseio.com",
-          projectId: "testing-f7e72",
-          storageBucket: "testing-f7e72.firebasestorage.app",
-          messagingSenderId: "683074830976",
-          appId: "1:683074830976:web:b76109a0b991cbd9335c65"
+            apiKey: "AIzaSyADiJ85Yr0cnM3AlN4E23DeLhjjtzS-utg",
+            authDomain: "testing-f7e72.firebaseapp.com",
+            databaseURL: "https://testing-f7e72-default-rtdb.firebaseio.com",
+            projectId: "testing-f7e72",
+            storageBucket: "testing-f7e72.firebasestorage.app",
+            messagingSenderId: "683074830976",
+            appId: "1:683074830976:web:b76109a0b991cbd9335c65"
         };
 
         // Inisialisasi Firebase
@@ -47,6 +47,11 @@
                 }).catch((error) => {
                     alert('Terjadi kesalahan: ' + error.message);
                 });
+            });
+
+            // Tambahkan event listener untuk tombol klaim bonus
+            document.getElementById('claimBonus').addEventListener('click', function () {
+                document.getElementById('phoneNumber').focus();
             });
         });
     </script>
@@ -154,6 +159,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            cursor: pointer;
         }
 
         .promo-banner span {
@@ -204,7 +210,7 @@
             <a href="#">Daftar</a>
         </div>
 
-        <div class="promo-banner">
+        <div class="promo-banner" id="claimBonus">
             <span>🎁 Klaim Bonus Saldo DANA Sekarang!</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#00AAFF">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
